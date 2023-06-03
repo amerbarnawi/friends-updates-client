@@ -13,7 +13,7 @@ function useFetchData(url, isRender) {
           const data = await response.json();
           setData(data);
         } else {
-          setError(response);
+          setError(response.detail);
         }
         setIsLoading(false);
       } catch (error) {

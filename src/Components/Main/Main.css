@@ -1,4 +1,6 @@
 .main {
   min-height: 100vh;
   border: 1px solid black;
+  width: 40%;
+  margin: 30px auto;
 }

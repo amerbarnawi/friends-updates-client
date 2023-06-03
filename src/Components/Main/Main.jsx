@@ -1,14 +1,29 @@
 import React from "react";
 import "../Main/Main.css";
 import useFetchData from "../../Hooks/FetchHook";
+import Post from "../Post/Post";
 
 function Main() {
   const url = "http://localhost:8000/post/all-posts";
-  const { data, error, isLoading } = useFetchData(url, false);
+  const { data: posts, error, isLoading } = useFetchData(url, false);
 
-  console.log(data);
-
-  return <div className="main">Main</div>;
+  return (
+    <div className="main">
+      {isLoading ? (
+        <h3>Loading ..</h3>
+      ) : error ? (
+        <h3>{error}</h3>
+      ) : (
+        <>
+          {posts.length > 0 ? (
+            posts.map((post) => <Post key={post.id} post={post} />)
+          ) : (
+            <p>No posts available!</p>
+          )}
+        </>
+      )}
+    </div>
+  );
 }
 
 export default Main;
