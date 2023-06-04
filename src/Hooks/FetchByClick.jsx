@@ -22,7 +22,7 @@ function useFetchByClick(isClicked, setIsClicked, url, requestOptions) {
         }
       } catch (error) {
         setIsLoading(false);
-        setError(`Something went wrong: ${error.message}`);
+        setError(`Something went wrong: ${error.detail}`);
       }
     })();
   }, [url, isClicked, requestOptions, setIsClicked]);
