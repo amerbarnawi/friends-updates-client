@@ -1,4 +1,33 @@
 .header {
   background-color: gray;
-  height: 10vh;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: white;
+}
+
+.header .app-name {
+  margin-left: 5%;
+  margin-top: 30px;
+}
+
+.header .navbar {
+  display: flex;
+  flex-direction: row;
+  margin-right: 5%;
+}
+
+.header .navbar .navbar-btn {
+  padding: 6px 5px 10px 5px;
+  border: 1px solid white;
+  height: 18px;
+  width: 60px;
+  margin-top: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.header .navbar .navbar-btn:hover {
+  cursor: pointer;
 }

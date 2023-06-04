@@ -9,8 +9,8 @@ function useFetchData(url, isRender) {
     (async () => {
       try {
         const response = await fetch(url);
+        const data = await response.json();
         if (response.ok) {
-          const data = await response.json();
           setData(data);
         } else {
           setError(response.detail);
