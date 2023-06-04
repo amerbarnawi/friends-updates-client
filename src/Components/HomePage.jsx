@@ -1,8 +1,8 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import "../Components/HomePage.css";
+import { Outlet } from "react-router-dom";
 
 function HomePage() {
   return (

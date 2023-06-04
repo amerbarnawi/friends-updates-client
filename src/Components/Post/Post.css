@@ -1,15 +1,14 @@
 .post {
   border: 1px solid black;
   margin: 20px;
-  padding: 20px;
 }
 
 .post-image {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .post-image img {
-  width: 300px;
-  margin: 20px;
+  width: 100%;
 }

@@ -1,6 +1,22 @@
 .main {
   min-height: 100vh;
-  border: 1px solid black;
-  width: 40%;
+  width: 90%;
   margin: 30px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.middle-side {
+  flex: 2;
+  width: 100%;
+  background-color: red;
+}
+
+.left-side {
+  flex: 1;
+}
+
+.right-side {
+  flex: 1;
 }
