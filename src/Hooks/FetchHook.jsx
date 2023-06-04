@@ -13,7 +13,7 @@ function useFetchData(url, isRender) {
         if (response.ok) {
           setData(data);
         } else {
-          setError(response.detail);
+          setError(data.detail);
         }
         setIsLoading(false);
       } catch (error) {

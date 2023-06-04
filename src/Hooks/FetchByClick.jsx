@@ -13,10 +13,10 @@ function useFetchByClick(isClicked, setIsClicked, url, requestOptions) {
           const data = await response.json();
           if (response.ok) {
             setData(data);
+            setError("");
           } else {
-            setError(response.detail);
+            setError(data.detail);
           }
-
           setIsLoading(false);
           setIsClicked(false);
         }

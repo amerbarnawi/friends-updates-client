@@ -3,13 +3,16 @@ import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import "../Components/HomePage.css";
 import { Outlet } from "react-router-dom";
+import { LoginProvider } from "../Provider/LoginProvider";
 
 function HomePage() {
   return (
     <div>
-      <Header />
-      <Outlet />
-      <Footer />
+      <LoginProvider>
+        <Header />
+        <Outlet />
+        <Footer />
+      </LoginProvider>
     </div>
   );
 }

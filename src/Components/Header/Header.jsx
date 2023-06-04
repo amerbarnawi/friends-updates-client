@@ -1,8 +1,15 @@
 import React from "react";
 import "../Header/Header.css";
 import { NavLink } from "react-router-dom";
+import { useLoginDetails } from "../../Provider/LoginProvider";
 
 function Header() {
+  const { userData, setUserData } = useLoginDetails();
+
+  const handleLogOut = () => {
+    setUserData({});
+  };
+
   return (
     <div className="header">
       <div className="app-name">
@@ -11,13 +18,22 @@ function Header() {
         </h1>
       </div>
       <div className="navbar">
-        <div className="navbar-btn">
-          <NavLink to="/login">Login</NavLink>
+        {userData.authToken ? (
+          ""
+        ) : (
+          <>
+            <div className="navbar-btn">
+              <NavLink to="/login">Login</NavLink>
+            </div>
+            <div className="navbar-btn">
+              <NavLink to="/sign-up">Sign up</NavLink>
+            </div>
+          </>
+        )}
+
+        <div className="navbar-btn" onClick={handleLogOut}>
+          Log out
         </div>
-        <div className="navbar-btn">
-          <NavLink to="/sign-up">Sign up</NavLink>
-        </div>
-        <div className="navbar-btn">Log out</div>
       </div>
     </div>
   );

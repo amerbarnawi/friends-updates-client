@@ -1,42 +1,98 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "../SignUpForm/SignUpForm.css";
+import useFetchByClick from "../../Hooks/FetchByClick";
+import { useLoginDetails } from "../../Provider/LoginProvider";
 
 function LoginForm() {
   const [response, setResponse] = useState("");
   const [isSubmit, setIsSubmit] = useState(false);
-  const [userData, setUserData] = useState({
+  const [userDetails, setUserDetails] = useState({
     username: "",
     password: "",
   });
+
+  console.log(isSubmit);
+
+  const { setUserData } = useLoginDetails();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (userDetails.username && userDetails.password) {
+      setIsSubmit(true);
+    }
+  };
+
+  const formData = new FormData();
+  formData.append("username", userDetails.username);
+  formData.append("password", userDetails.password);
+
+  const url = "http://localhost:8000/login";
+  const requestOptions = {
+    method: "POST",
+    body: formData,
+  };
+
+  const { data, error, isLoading } = useFetchByClick(
+    isSubmit,
+    setIsSubmit,
+    url,
+    requestOptions
+  );
+
+  useEffect(() => {
+    if (data.access_token) {
+      setUserData({
+        authToken: data.access_token,
+        authTokenType: data.token_type,
+        userId: data.user_id,
+        username: data.username,
+      });
+      setUserDetails({
+        username: "",
+        password: "",
+      });
+    }
+  }, [data]);
 
   return (
     <div className="main-page">
       <div className="signUp-container">
         <div className="signup-title-box">
           <h1>Login</h1>
+          <h4>
+            {isSubmit && isLoading ? (
+              `Loading ..`
+            ) : error ? (
+              <span className="error">{error}</span>
+            ) : (
+              response
+            )}
+          </h4>
         </div>
-        <form className="signUp-form">
+        <form className="signUp-form" onSubmit={(e) => handleSubmit(e)}>
           <div className="input-container">
             <label>User name</label>
             <input
+              value={userDetails.username}
               type="input"
               placeholder="Enter your username."
               required
               onChange={(e) =>
-                setUserData({ ...userData, username: e.target.value })
+                setUserDetails({ ...userDetails, username: e.target.value })
               }
             />
           </div>
           <div className="input-container">
             <label>Password</label>
             <input
-              type="password"
+              value={userDetails.password}
+              type="new-password"
               placeholder="Enter your password."
               required
               onChange={(e) =>
-                setUserData({ ...userData, password: e.target.value })
+                setUserDetails({ ...userDetails, password: e.target.value })
               }
             />
           </div>
