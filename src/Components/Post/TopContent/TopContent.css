@@ -1,0 +1,14 @@
+.top-content {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.user-logo-container img {
+  width: 100px;
+  margin: 10px;
+}
+
+.username-container {
+  margin-top: 30px;
+}

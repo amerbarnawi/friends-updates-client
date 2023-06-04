@@ -12,3 +12,40 @@
 .post-image img {
   width: 100%;
 }
+
+.post-title {
+  margin: 10px;
+}
+
+.post-content {
+  margin: 10px;
+}
+
+.interaction-overview {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.interaction-overview .like:hover,
+.comment:hover {
+  cursor: pointer;
+}
+
+.interaction-buttons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+}
+
+.interaction-btn {
+  flex: 1;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid rgb(194, 193, 193);
+}
+
+.interaction-btn:hover {
+  cursor: pointer;
+}
