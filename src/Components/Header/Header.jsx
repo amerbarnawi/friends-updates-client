@@ -8,6 +8,7 @@ function Header() {
 
   const handleLogOut = () => {
     setUserData({});
+    sessionStorage.removeItem("userData");
   };
 
   return (

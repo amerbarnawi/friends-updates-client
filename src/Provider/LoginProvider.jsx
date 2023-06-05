@@ -9,8 +9,6 @@ export function useLoginDetails() {
 export function LoginProvider({ children }) {
   const [userData, setUserData] = useState({});
 
-  console.log("provider", userData);
-
   //Session storage
 
   useEffect(() => {

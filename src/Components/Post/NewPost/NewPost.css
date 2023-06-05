@@ -1,0 +1,87 @@
+.new-post {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  margin-bottom: 40px;
+  padding: 10px;
+}
+
+.new-post .image-contaner {
+  position: relative;
+  width: fit-content;
+  margin: 20px auto;
+  width: 60%;
+}
+
+.new-post .image-contaner img {
+  width: 100%;
+}
+
+.new-post .image-contaner button {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: rgba(255, 255, 255, 0.342);
+  border: none;
+  font-size: 20px;
+}
+
+.new-post .image-contaner button:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.new-post input {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.new-post .post-title-input {
+  height: 25px;
+  border: none;
+  border-bottom: 1px solid rgb(210, 207, 207);
+  font-size: 16px;
+}
+
+.new-post input:last-child {
+  border: none;
+  outline: none;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.new-post .post-title-input:focus {
+  outline: none;
+  border-bottom: 1px solid green;
+}
+
+.new-post textarea {
+  border-radius: 20px;
+  border: 1px solid rgb(212, 211, 211);
+  padding: 20px;
+  font-size: 16px;
+}
+
+.new-post textarea:focus {
+  outline: none;
+  border: 1px solid green;
+}
+
+.submit-post-btn {
+  width: 100px;
+  padding: 10px;
+  margin-left: 80%;
+  border-radius: 20px;
+  color: white;
+  background-color: green;
+  border: none;
+  border: 1px solid green;
+}
+
+.submit-post-btn:hover {
+  background-color: white;
+  color: green;
+  cursor: pointer;
+  border: 1px solid green;
+  transition: all 0.3s;
+}

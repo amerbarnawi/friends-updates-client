@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../SignUpForm/SignUpForm.css";
 import useFetchByClick from "../../Hooks/FetchByClick";
 import { useLoginDetails } from "../../Provider/LoginProvider";
@@ -12,8 +12,7 @@ function LoginForm() {
     username: "",
     password: "",
   });
-
-  console.log(isSubmit);
+  const Navigate = useNavigate();
 
   const { setUserData } = useLoginDetails();
 
@@ -43,16 +42,19 @@ function LoginForm() {
 
   useEffect(() => {
     if (data.access_token) {
-      setUserData({
+      const newUserData = {
         authToken: data.access_token,
         authTokenType: data.token_type,
         userId: data.user_id,
         username: data.username,
-      });
+      };
+      setUserData(newUserData);
       setUserDetails({
         username: "",
         password: "",
       });
+      sessionStorage.setItem("userData", JSON.stringify(newUserData));
+      Navigate("/");
     }
   }, [data]);
 
