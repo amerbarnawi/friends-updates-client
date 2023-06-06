@@ -3,6 +3,7 @@ import useFetchData from "../../../Hooks/FetchHook";
 import Post from "../../Post/Post";
 import "../Middle/Middle.css";
 import NewPost from "../../Post/NewPost/NewPost";
+import { useLoginDetails } from "../../../Provider/LoginProvider";
 
 function Middle() {
   const [isNewPost, setIsNewPost] = useState(false);
@@ -11,6 +12,7 @@ function Middle() {
 
   const url = "http://localhost:8000/post/all-posts";
   const { data, error, isLoading } = useFetchData(url, isRender);
+  const { userData } = useLoginDetails();
 
   useEffect(() => {
     setIsRender(false);
@@ -31,14 +33,18 @@ function Middle() {
         <h3>{error}</h3>
       ) : (
         <>
-          <div className="new-post-container">
-            <input
-              type="text"
-              placeholder="What is your update .."
-              className="new-post-input"
-              onClick={() => setIsNewPost(!isNewPost)}
-            />
-          </div>
+          {userData.authToken ? (
+            <div className="new-post-container">
+              <input
+                type="text"
+                placeholder="What is your update .."
+                className="new-post-input"
+                onClick={() => setIsNewPost(!isNewPost)}
+              />
+            </div>
+          ) : (
+            ""
+          )}
           <>
             {isNewPost ? (
               <NewPost setIsRender={setIsRender} setIsNewPost={setIsNewPost} />
@@ -47,7 +53,9 @@ function Middle() {
             )}
           </>
           {allPosts.length > 0 ? (
-            allPosts.map((post) => <Post key={post.id} post={post} />)
+            allPosts.map((post) => (
+              <Post key={post.id} post={post} setIsRender={setIsRender} />
+            ))
           ) : (
             <p>No posts available!</p>
           )}

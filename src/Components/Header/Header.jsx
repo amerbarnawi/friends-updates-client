@@ -32,9 +32,13 @@ function Header() {
           </>
         )}
 
-        <div className="navbar-btn" onClick={handleLogOut}>
-          Log out
-        </div>
+        {userData.authToken ? (
+          <div className="navbar-btn" onClick={handleLogOut}>
+            Log out
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
