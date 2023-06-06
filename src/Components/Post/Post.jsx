@@ -1,19 +1,67 @@
 import "../Post/Post.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TopContent from "./TopContent/TopContent";
 import Comment from "./Comment/Comment";
 import NewComment from "./NewComment/NewComment";
 import { useLoginDetails } from "../../Provider/LoginProvider";
+import useFetchByClick from "../../Hooks/FetchByClick";
 
 function Post({ post, setIsRender }) {
+  const [isCommentClicked, setIsCommentClicked] = useState(false);
+  const [isNewComment, setIsNewComment] = useState(false);
+  const [isLikeSubmit, setIsLikeSubmit] = useState(false);
+  const [likeClassName, setLikeClassName] = useState("interaction-btn");
+
   const { title, content, img_url, publish_date, user, comments, likes } = post;
   const currentDate = new Date(publish_date);
   const Base_image_url = `http://localhost:8000/`;
 
   const { userData } = useLoginDetails();
 
-  const [isCommentClicked, setIsCommentClicked] = useState(false);
-  const [isNewComment, setIsNewComment] = useState(false);
+  // Update like => Start
+  const url = "http://localhost:8000/like";
+
+  const requestOptions = {
+    method: "POST",
+    headers: new Headers({
+      Authorization: userData.authTokenType + " " + userData.authToken,
+      "Content-type": "application/json; charset=utf-8",
+    }),
+    body: JSON.stringify({
+      username: userData.username,
+      post_id: post.id,
+    }),
+  };
+
+  const { data: createdLike } = useFetchByClick(
+    isLikeSubmit,
+    setIsLikeSubmit,
+    url,
+    requestOptions
+  );
+
+  useEffect(() => {
+    if (createdLike) {
+      setIsRender(true);
+      if (createdLike.id) {
+        // Created like
+        setLikeClassName("interaction-btn active-like");
+      } else {
+        // Deleted like
+        setLikeClassName("interaction-btn");
+      }
+    }
+  }, [createdLike]);
+
+  useEffect(() => {
+    post.likes.forEach((like) =>
+      like.username === userData.username
+        ? setLikeClassName("interaction-btn active-like")
+        : setLikeClassName("interaction-btn")
+    );
+  }, []);
+
+  // Update like => End
 
   return (
     <div className="post">
@@ -36,7 +84,12 @@ function Post({ post, setIsRender }) {
           </div>
           {userData.authToken ? (
             <div className="interaction-buttons">
-              <div className="interaction-btn">Like</div>
+              <div
+                className={likeClassName}
+                onClick={() => setIsLikeSubmit(true)}
+              >
+                Like
+              </div>
               <div
                 className="interaction-btn"
                 onClick={() => setIsNewComment(!isNewComment)}

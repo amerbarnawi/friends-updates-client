@@ -49,3 +49,8 @@
 .interaction-btn:hover {
   cursor: pointer;
 }
+
+.active-like {
+  background-color: green;
+  color: white;
+}
