@@ -1,0 +1,36 @@
+.popup-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cancel-btn {
+  background-color: white;
+  color: green;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid green;
+  margin-right: 10px;
+}
+
+.cancel-btn:hover {
+  background-color: green;
+  color: white;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background-color: white;
+  color: red;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid red;
+}
+
+.delete-btn:hover {
+  background-color: red;
+  color: white;
+  transition: all 0.3s;
+  cursor: pointer;
+}

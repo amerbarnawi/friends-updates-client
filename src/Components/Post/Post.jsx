@@ -5,12 +5,15 @@ import Comment from "./Comment/Comment";
 import NewComment from "./NewComment/NewComment";
 import { useLoginDetails } from "../../Provider/LoginProvider";
 import useFetchByClick from "../../Hooks/FetchByClick";
+import Popup from "../Popup/Popup";
+import DeleteItem from "./DeleteItem/DeleteItem";
 
 function Post({ post, setIsRender }) {
   const [isCommentClicked, setIsCommentClicked] = useState(false);
   const [isNewComment, setIsNewComment] = useState(false);
   const [isLikeSubmit, setIsLikeSubmit] = useState(false);
   const [likeClassName, setLikeClassName] = useState("interaction-btn");
+  const [isPopupTrigger, setIsPopupTrigger] = useState(false);
 
   const { title, content, img_url, publish_date, user, comments, likes } = post;
   const currentDate = new Date(publish_date);
@@ -51,7 +54,7 @@ function Post({ post, setIsRender }) {
         setLikeClassName("interaction-btn");
       }
     }
-  }, [createdLike]);
+  }, [createdLike, setIsRender]);
 
   useEffect(() => {
     post.likes.forEach((like) =>
@@ -59,18 +62,24 @@ function Post({ post, setIsRender }) {
         ? setLikeClassName("interaction-btn active-like")
         : setLikeClassName("interaction-btn")
     );
-  }, []);
+  });
 
   // Update like => End
 
   return (
     <div className="post">
-      <TopContent user={user} currentDate={currentDate} />
+      <TopContent
+        user={user}
+        currentDate={currentDate}
+        post={post}
+        setIsRender={setIsRender}
+        setIsPopupTrigger={setIsPopupTrigger}
+      />
       <div>
         <h4 className="post-title">{title}</h4>
         <p className="post-content">{content}</p>
         <div className="post-image">
-          <img src={Base_image_url + img_url} alt="post image" />
+          <img src={Base_image_url + img_url} alt="post" />
         </div>
         <div className="interaction-area">
           <div className="interaction-overview">
@@ -118,6 +127,17 @@ function Post({ post, setIsRender }) {
           </div>
         </div>
       </div>
+      <Popup
+        className="delete-popup"
+        isTrigger={isPopupTrigger}
+        setIsPopupTrigger={setIsPopupTrigger}
+      >
+        <DeleteItem
+          post={post}
+          setIsRender={setIsRender}
+          setIsPopupTrigger={setIsPopupTrigger}
+        />
+      </Popup>
     </div>
   );
 }

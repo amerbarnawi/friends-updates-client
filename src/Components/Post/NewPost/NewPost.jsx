@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "../NewPost/NewPost.css";
 import { useLoginDetails } from "../../../Provider/LoginProvider";
 import useFetchByClick from "../../../Hooks/FetchByClick";
-import { useNavigate } from "react-router-dom";
 
 function NewPost({ setIsRender, setIsNewPost }) {
   const [imageFile, setImageFile] = useState("");
@@ -67,31 +66,17 @@ function NewPost({ setIsRender, setIsNewPost }) {
   );
 
   useEffect(() => {
-    console.log({
-      title: newPost.title,
-      content: newPost.content,
-      img_url: imageUrl?.filename
-        ? "http://localhost:8000/" + imageUrl.filename
-        : "",
-      creater_id: userData.userId,
-    });
-  }, [createdPost]);
-
-  useEffect(() => {
     if (createdPost?.id) {
       setIsRender(true);
       setIsNewPost(false);
     }
-  }, [createdPost]);
+  }, [createdPost, setIsNewPost, setIsRender]);
 
   return (
     <div className="new-post">
       {imageUrl?.filename ? (
         <div className="image-contaner">
-          <img
-            src={"http://localhost:8000/" + imageUrl.filename}
-            alt="Post image"
-          />
+          <img src={"http://localhost:8000/" + imageUrl.filename} alt="Post" />
           <button
             onClick={() => {
               setImageFile("");

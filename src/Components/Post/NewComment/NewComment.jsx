@@ -37,7 +37,7 @@ function NewComment({ post, setIsRender, setIsCommentClicked }) {
       setIsRender(true);
       setIsCommentClicked(true);
     }
-  }, [createdComment]);
+  }, [createdComment, setIsCommentClicked, setIsRender]);
 
   return (
     <div className="comment-form">

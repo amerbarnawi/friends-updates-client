@@ -6,7 +6,6 @@ import useFetchByClick from "../../Hooks/FetchByClick";
 import { useLoginDetails } from "../../Provider/LoginProvider";
 
 function LoginForm() {
-  const [response, setResponse] = useState("");
   const [isSubmit, setIsSubmit] = useState(false);
   const [userDetails, setUserDetails] = useState({
     username: "",
@@ -56,7 +55,7 @@ function LoginForm() {
       sessionStorage.setItem("userData", JSON.stringify(newUserData));
       Navigate("/");
     }
-  }, [data]);
+  }, [data, Navigate, setUserData]);
 
   return (
     <div className="main-page">
@@ -69,7 +68,7 @@ function LoginForm() {
             ) : error ? (
               <span className="error">{error}</span>
             ) : (
-              response
+              ""
             )}
           </h4>
         </div>

@@ -1,6 +1,7 @@
 .post {
   border: 1px solid black;
   margin: 20px;
+  position: relative;
 }
 
 .post-image {
