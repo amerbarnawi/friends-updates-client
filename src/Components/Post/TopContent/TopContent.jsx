@@ -1,14 +1,11 @@
 import React from "react";
 import "../TopContent/TopContent.css";
 import userLogo from "../../../images/user_logo.png";
+import { useLoginDetails } from "../../../Provider/LoginProvider";
 
-function TopContent({
-  currentDate,
-  user,
-  post,
-  setIsRender,
-  setIsPopupTrigger,
-}) {
+function TopContent({ currentDate, user, post, setIsPopupTrigger }) {
+  const { userData } = useLoginDetails();
+
   return (
     <div className="top-content">
       <div className="user-detail">
@@ -20,7 +17,11 @@ function TopContent({
           <p>{currentDate.toDateString()}</p>
         </div>
       </div>
-      <button onClick={() => setIsPopupTrigger(true)}>X</button>
+      {userData.userId === post.user.id ? (
+        <button onClick={() => setIsPopupTrigger(true)}>X</button>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

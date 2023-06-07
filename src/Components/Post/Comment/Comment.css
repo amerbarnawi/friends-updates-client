@@ -1,0 +1,41 @@
+.comment-container {
+  padding: 10px;
+  background-color: rgb(227, 234, 240);
+  margin: 20px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment-top-content {
+  margin: 10px;
+}
+
+.comment-top-content p:first-child {
+  font-size: 18px;
+  color: green;
+}
+
+.comment-top-content p:last-child {
+  color: rgb(129, 128, 128);
+}
+
+.comment-text {
+  margin: 8px;
+  margin-left: 15px;
+  color: rgb(78, 77, 77);
+}
+
+.delete-comment-btn {
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  align-self: flex-start;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.delete-comment-btn:hover {
+  color: red;
+  cursor: pointer;
+}

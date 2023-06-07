@@ -15,7 +15,9 @@ function Header() {
     <div className="header">
       <div className="app-name">
         <h1>
-          <NavLink to="/">Friends Updates</NavLink>
+          <NavLink className="link" to="/">
+            Friends Updates
+          </NavLink>
         </h1>
       </div>
       <div className="navbar">
@@ -23,12 +25,12 @@ function Header() {
           ""
         ) : (
           <>
-            <div className="navbar-btn">
-              <NavLink to="/login">Login</NavLink>
-            </div>
-            <div className="navbar-btn">
-              <NavLink to="/sign-up">Sign up</NavLink>
-            </div>
+            <NavLink className="link" to="/login">
+              <div className="navbar-btn">Login</div>{" "}
+            </NavLink>
+            <NavLink className="link" to="/sign-up">
+              <div className="navbar-btn">Sign up</div>
+            </NavLink>
           </>
         )}
 

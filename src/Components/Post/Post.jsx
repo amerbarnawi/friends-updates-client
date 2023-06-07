@@ -121,7 +121,12 @@ function Post({ post, setIsRender }) {
             )}
             {comments.length > 0 && isCommentClicked
               ? comments.map((comment, index) => (
-                  <Comment key={index} comment={comment} />
+                  <Comment
+                    key={index}
+                    comment={comment}
+                    setIsRender={setIsRender}
+                    setIsCommentClicked={setIsCommentClicked}
+                  />
                 ))
               : ""}
           </div>

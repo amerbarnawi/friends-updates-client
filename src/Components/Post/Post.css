@@ -1,7 +1,11 @@
 .post {
-  border: 1px solid black;
   margin: 20px;
+  margin-bottom: 30px;
   position: relative;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border-radius: 20px;
+  padding-bottom: 10px;
 }
 
 .post-image {
@@ -43,8 +47,8 @@
 .interaction-btn {
   flex: 1;
   text-align: center;
-  padding: 5px;
-  border: 1px solid rgb(194, 193, 193);
+  padding: 10px;
+  border-top: 1px dotted rgb(175, 173, 173);
 }
 
 .interaction-btn:hover {
@@ -52,6 +56,6 @@
 }
 
 .active-like {
-  background-color: green;
-  color: white;
+  font-weight: bold;
+  color: green;
 }

@@ -26,8 +26,17 @@
   margin-top: 40px;
   margin-right: 10px;
   text-align: center;
+  border-radius: 10px;
 }
 
 .header .navbar .navbar-btn:hover {
   cursor: pointer;
+  background-color: white;
+  color: black;
+  transition: all 0.3s;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
 }

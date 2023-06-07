@@ -41,12 +41,13 @@ function NewComment({ post, setIsRender, setIsCommentClicked }) {
 
   return (
     <div className="comment-form">
-      <input
+      <textarea
+        rows="2"
         value={commentText}
-        type="text"
         placeholder="Add your comment.."
         onChange={(e) => setCommentText(e.target.value)}
       />
+
       <button onClick={() => setIsSubmit(true)}>Submit</button>
     </div>
   );
