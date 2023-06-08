@@ -1,0 +1,14 @@
+.post-card {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  transition: all 0.2s linear;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  margin: 25px;
+}
+
+.post-card:hover {
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  cursor: pointer;
+  transform: scale(1.05);
+}

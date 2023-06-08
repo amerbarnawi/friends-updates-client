@@ -1,3 +1,21 @@
 .right-side {
-  border: 1px solid rgb(225, 225, 225);
+  height: 650px;
+  overflow: scroll;
+  display: flex;
+  justify-content: center;
+}
+
+.posts-cards-container {
+  width: 80%;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.right-side::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.right-side {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

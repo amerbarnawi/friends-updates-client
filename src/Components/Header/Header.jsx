@@ -9,6 +9,7 @@ function Header() {
   const handleLogOut = () => {
     setUserData({});
     sessionStorage.removeItem("userData");
+    window.location.reload();
   };
 
   return (

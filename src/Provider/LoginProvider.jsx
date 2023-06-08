@@ -8,6 +8,7 @@ export function useLoginDetails() {
 
 export function LoginProvider({ children }) {
   const [userData, setUserData] = useState({});
+  const [userPosts, setUserposts] = useState([]);
 
   //Session storage
 
@@ -19,7 +20,9 @@ export function LoginProvider({ children }) {
   }, []);
 
   return (
-    <LoginContext.Provider value={{ userData, setUserData }}>
+    <LoginContext.Provider
+      value={{ userData, setUserData, userPosts, setUserposts }}
+    >
       {children}
     </LoginContext.Provider>
   );

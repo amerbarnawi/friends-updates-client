@@ -12,18 +12,27 @@ function Middle() {
 
   const url = "http://localhost:8000/post/all-posts";
   const { data, error, isLoading } = useFetchData(url, isRender);
-  const { userData } = useLoginDetails();
+  const { userData, setUserposts } = useLoginDetails();
 
   useEffect(() => {
     setIsRender(false);
   }, [isRender]);
 
+  console.log(userData.user_id);
+
   useEffect(() => {
     if (data) {
       const reversedData = data.reverse();
       setAllPosts(reversedData);
+      if (userData) {
+        const userPosts = reversedData.filter(
+          (post) => post.user.id === userData.userId
+        );
+        setUserposts(userPosts);
+        sessionStorage.setItem("userPosts", JSON.stringify(userPosts));
+      }
     }
-  }, [data]);
+  }, [data, setUserposts, userData]);
 
   return (
     <div className="all-posts">

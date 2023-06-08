@@ -68,81 +68,87 @@ function Post({ post, setIsRender }) {
 
   return (
     <div className="post">
-      <TopContent
-        user={user}
-        currentDate={currentDate}
-        post={post}
-        setIsRender={setIsRender}
-        setIsPopupTrigger={setIsPopupTrigger}
-      />
-      <div>
-        <h4 className="post-title">{title}</h4>
-        <p className="post-content">{content}</p>
-        <div className="post-image">
-          <img src={Base_image_url + img_url} alt="post" />
-        </div>
-        <div className="interaction-area">
-          <div className="interaction-overview">
-            <p className="like">{likes.length} Like</p>
-            <p
-              className="comment"
-              onClick={() => setIsCommentClicked(!isCommentClicked)}
-            >
-              {comments.length} Comment
-            </p>
-          </div>
-          {userData.authToken ? (
-            <div className="interaction-buttons">
-              <div
-                className={likeClassName}
-                onClick={() => setIsLikeSubmit(true)}
-              >
-                Like
-              </div>
-              <div
-                className="interaction-btn"
-                onClick={() => setIsNewComment(!isNewComment)}
-              >
-                Comment
-              </div>
+      {post ? (
+        <>
+          <TopContent
+            user={user}
+            currentDate={currentDate}
+            post={post}
+            setIsRender={setIsRender}
+            setIsPopupTrigger={setIsPopupTrigger}
+          />
+          <div>
+            <h4 className="post-title">{title}</h4>
+            <p className="post-content">{content}</p>
+            <div className="post-image">
+              {img_url ? <img src={Base_image_url + img_url} alt="post" /> : ""}
             </div>
-          ) : (
-            ""
-          )}
-          <div className="comments-area">
-            {userData.authToken && isNewComment ? (
-              <NewComment
-                post={post}
-                setIsRender={setIsRender}
-                setIsCommentClicked={setIsCommentClicked}
-              />
-            ) : (
-              ""
-            )}
-            {comments.length > 0 && isCommentClicked
-              ? comments.map((comment, index) => (
-                  <Comment
-                    key={index}
-                    comment={comment}
+            <div className="interaction-area">
+              <div className="interaction-overview">
+                <p className="like">{likes.length} Like</p>
+                <p
+                  className="comment"
+                  onClick={() => setIsCommentClicked(!isCommentClicked)}
+                >
+                  {comments.length} Comment
+                </p>
+              </div>
+              {userData.authToken ? (
+                <div className="interaction-buttons">
+                  <div
+                    className={likeClassName}
+                    onClick={() => setIsLikeSubmit(true)}
+                  >
+                    Like
+                  </div>
+                  <div
+                    className="interaction-btn"
+                    onClick={() => setIsNewComment(!isNewComment)}
+                  >
+                    Comment
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
+              <div className="comments-area">
+                {userData.authToken && isNewComment ? (
+                  <NewComment
+                    post={post}
                     setIsRender={setIsRender}
                     setIsCommentClicked={setIsCommentClicked}
                   />
-                ))
-              : ""}
+                ) : (
+                  ""
+                )}
+                {comments.length > 0 && isCommentClicked
+                  ? comments.map((comment, index) => (
+                      <Comment
+                        key={index}
+                        comment={comment}
+                        setIsRender={setIsRender}
+                        setIsCommentClicked={setIsCommentClicked}
+                      />
+                    ))
+                  : ""}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <Popup
-        className="delete-popup"
-        isTrigger={isPopupTrigger}
-        setIsPopupTrigger={setIsPopupTrigger}
-      >
-        <DeleteItem
-          post={post}
-          setIsRender={setIsRender}
-          setIsPopupTrigger={setIsPopupTrigger}
-        />
-      </Popup>
+          <Popup
+            className="delete-popup"
+            isTrigger={isPopupTrigger}
+            setIsPopupTrigger={setIsPopupTrigger}
+          >
+            <DeleteItem
+              post={post}
+              setIsRender={setIsRender}
+              setIsPopupTrigger={setIsPopupTrigger}
+            />
+          </Popup>
+        </>
+      ) : (
+        "Sorry, something went wrong!"
+      )}
     </div>
   );
 }

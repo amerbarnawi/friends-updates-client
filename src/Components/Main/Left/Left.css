@@ -1,3 +1,40 @@
 .left-side {
-  border: 1px solid rgb(225, 225, 225);
+}
+
+.current-user-details,
+.login-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  width: fit-content;
+  padding: 50px;
+  margin: 30px auto;
+}
+
+.current-user-details button,
+.login-info button {
+  background-color: rgba(255, 255, 255, 0);
+  margin-top: 30px;
+  border-radius: 20px;
+  padding: 10px;
+  width: 100px;
+}
+
+.current-user-details button:hover,
+.login-info button:hover {
+  color: rgb(245, 9, 178);
+  border-color: rgb(245, 9, 178);
+  cursor: pointer;
+}
+
+.current-user-details span {
+  color: rgb(245, 9, 178);
+}
+
+.current-user-details img,
+.login-info img {
+  width: 150px;
 }
